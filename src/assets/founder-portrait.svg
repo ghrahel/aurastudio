@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="portrait-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4b3b47"/>
+      <stop offset="60%" stop-color="#382c35"/>
+      <stop offset="100%" stop-color="#2a2027"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#cfd2b2" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#cfd2b2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#portrait-bg)"/>
+  <circle cx="400" cy="350" r="260" fill="url(#halo)"/>
+
+  <!-- Minimalist editorial silhouette portrait -->
+  <g transform="translate(180, 160)">
+    <!-- Shoulders / draped blazer -->
+    <path d="M60,620 C80,480 140,420 220,390 C300,420 360,480 380,620 Z" fill="#6a6262" opacity="0.85"/>
+    <path d="M120,620 L220,440 L320,620 Z" fill="#4b3b47"/>
+    <path d="M190,440 L220,530 L250,440 Z" fill="#e0d8de" opacity="0.9"/>
+
+    <!-- Neck & head profile -->
+    <rect x="195" y="310" width="50" height="90" fill="#cfd2b2" opacity="0.8"/>
+    <!-- Head oval -->
+    <ellipse cx="220" cy="240" rx="75" ry="95" fill="#cfd2b2" opacity="0.9"/>
+    <!-- Hair structure in palette darks -->
+    <path d="M140,240 C140,140 180,120 220,120 C280,120 305,160 305,260 C290,200 240,160 190,180 C150,200 145,230 140,240 Z" fill="#2a2027"/>
+    <ellipse cx="220" cy="130" rx="45" ry="25" fill="#4b3b47"/>
+
+    <!-- Minimalist tortoiseshell glasses accent -->
+    <rect x="175" y="220" width="36" height="22" rx="4" fill="none" stroke="#4b3b47" stroke-width="2.5"/>
+    <rect x="229" y="220" width="36" height="22" rx="4" fill="none" stroke="#4b3b47" stroke-width="2.5"/>
+    <line x1="211" y1="230" x2="229" y2="230" stroke="#4b3b47" stroke-width="2.5"/>
+  </g>
+
+  <text x="80" y="880" font-family="'Cormorant Garamond', serif" font-size="32" fill="#e0d8de" font-style="italic">Elena Vance</text>
+  <text x="80" y="915" font-family="sans-serif" font-size="12" letter-spacing="3" fill="#cfd2b2">FOUNDER &amp; HEAD OF STRATEGY</text>
+  <text x="80" y="940" font-family="sans-serif" font-size="12" fill="#9c9990">14+ Years in Brand Strategy &amp; Search Science</text>
+</svg>

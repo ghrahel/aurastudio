@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gallery-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6a6262"/>
+      <stop offset="50%" stop-color="#9c9990"/>
+      <stop offset="100%" stop-color="#cfd2b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#f6f5f2"/>
+  <!-- Minimalist gallery exhibition hall -->
+  <g transform="translate(140, 140)">
+    <!-- Architectural gallery wall perspective -->
+    <polygon points="0,0 80,60 80,480 0,540" fill="#cfd2b2" opacity="0.4"/>
+    <rect x="80" y="60" width="760" height="420" fill="#ffffff" stroke="#9c9990" stroke-width="1"/>
+    <polygon points="840,60 920,0 920,540 840,480" fill="#9c9990" opacity="0.3"/>
+    <polygon points="0,540 80,480 840,480 920,540" fill="#e0d8de" opacity="0.5"/>
+
+    <!-- Artwork on gallery wall -->
+    <rect x="220" y="140" width="220" height="260" fill="#4b3b47"/>
+    <circle cx="330" cy="270" r="60" fill="#cfd2b2"/>
+    <line x1="220" y1="270" x2="440" y2="270" stroke="#e0d8de" stroke-width="1.5"/>
+
+    <rect x="520" y="180" width="180" height="220" fill="#6a6262"/>
+    <line x1="520" y1="180" x2="700" y2="400" stroke="#cfd2b2" stroke-width="2"/>
+    <line x1="520" y1="400" x2="700" y2="180" stroke="#e0d8de" stroke-width="2"/>
+  </g>
+  <text x="140" y="90" font-family="'Cormorant Garamond', serif" font-size="24" letter-spacing="5" fill="#4b3b47">04 / NORTH TERRACE CONTEMPORARY</text>
+  <text x="140" y="115" font-family="sans-serif" font-size="12" letter-spacing="3" fill="#6a6262">SEARCH ENGINE OPTIMIZATION &amp; CULTURAL COMMERCE</text>
+</svg>

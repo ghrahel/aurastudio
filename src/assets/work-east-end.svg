@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="east-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4b3b47"/>
+      <stop offset="70%" stop-color="#6a6262"/>
+      <stop offset="100%" stop-color="#9c9990"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#4b3b47"/>
+  <!-- Fashion editorial frames -->
+  <rect x="80" y="80" width="1040" height="640" fill="none" stroke="#e0d8de" stroke-width="1" opacity="0.4"/>
+  <rect x="140" y="140" width="460" height="520" fill="#3a2d37"/>
+  <line x1="140" y1="200" x2="600" y2="200" stroke="#cfd2b2" stroke-width="1" opacity="0.3"/>
+  <!-- Draped silhouette abstraction -->
+  <path d="M280,240 C360,260 400,340 380,440 C360,540 450,620 480,660 L200,660 C230,580 220,400 240,320 Z" fill="#cfd2b2" opacity="0.85"/>
+  <path d="M360,280 C410,320 440,400 420,500 L320,660 L380,660 Z" fill="#e0d8de" opacity="0.6"/>
+  <!-- Right editorial block -->
+  <g transform="translate(680, 220)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#cfd2b2" stroke-width="2"/>
+    <text x="0" y="45" font-family="'Cormorant Garamond', serif" font-size="36" fill="#e0d8de" font-style="italic">The Rundle Atelier</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="13" fill="#cfd2b2" letter-spacing="3">AUTUMN / WINTER DIGITAL LAUNCH</text>
+    <text x="0" y="140" font-family="sans-serif" font-size="14" fill="#9c9990" opacity="0.9">
+      Adelaide East End haute couture &amp; slow-fashion tailoring.
+    </text>
+    <rect x="0" y="180" width="360" height="180" fill="#3a2d37" stroke="#6a6262" stroke-width="1"/>
+    <text x="30" y="235" font-family="'Cormorant Garamond', serif" font-size="32" fill="#cfd2b2">+340%</text>
+    <text x="30" y="265" font-family="sans-serif" font-size="11" fill="#e0d8de" letter-spacing="2">D2C REVENUE ACCELERATION</text>
+    <text x="30" y="310" font-family="sans-serif" font-size="12" fill="#9c9990">Omnichannel Digital Strategy &amp; Social Commerce</text>
+  </g>
+  <text x="140" y="115" font-family="sans-serif" font-size="11" letter-spacing="4" fill="#cfd2b2">03 / EAST END ADELAIDE COUTURE</text>
+</svg>

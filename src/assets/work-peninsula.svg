@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cfd2b2"/>
+      <stop offset="60%" stop-color="#9c9990"/>
+      <stop offset="100%" stop-color="#4b3b47"/>
+    </linearGradient>
+    <linearGradient id="coastal-mist" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e0d8de" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#cfd2b2" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#e0d8de"/>
+  <rect x="40" y="40" width="1120" height="720" fill="#f4f0f2"/>
+  <!-- Botanical botanical sketch contours -->
+  <g transform="translate(680, 120)" opacity="0.85">
+    <path d="M120,480 C100,320 220,180 340,60 C260,200 240,360 260,480 Z" fill="#9c9990" opacity="0.6"/>
+    <path d="M180,480 C180,300 80,180 20,100 C100,180 140,340 180,480 Z" fill="#cfd2b2" opacity="0.8"/>
+    <path d="M220,520 C220,380 300,240 380,160 C320,240 280,380 260,520 Z" fill="#4b3b47" opacity="0.5"/>
+    <circle cx="200" cy="220" r="12" fill="#4b3b47"/>
+    <circle cx="280" cy="180" r="8" fill="#4b3b47"/>
+    <circle cx="120" cy="160" r="10" fill="#4b3b47"/>
+  </g>
+  <!-- Architectural apothecary apothecary bottles -->
+  <g transform="translate(180, 260)">
+    <rect x="0" y="80" width="160" height="320" rx="8" fill="#4b3b47"/>
+    <rect x="40" y="30" width="80" height="50" rx="4" fill="#6a6262"/>
+    <rect x="25" y="160" width="110" height="150" fill="#cfd2b2" opacity="0.9"/>
+    <text x="80" y="210" font-family="serif" font-size="16" fill="#4b3b47" text-anchor="middle" letter-spacing="3">FLEURIEU</text>
+    <text x="80" y="235" font-family="sans-serif" font-size="9" fill="#4b3b47" text-anchor="middle" letter-spacing="2">BOTANICALS</text>
+    <line x1="45" y1="250" x2="115" y2="250" stroke="#4b3b47" stroke-width="0.8"/>
+
+    <rect x="200" y="140" width="130" height="260" rx="6" fill="#6a6262"/>
+    <rect x="235" y="95" width="60" height="45" rx="3" fill="#9c9990"/>
+    <rect x="220" y="200" width="90" height="120" fill="#e0d8de" opacity="0.95"/>
+    <text x="265" y="245" font-family="serif" font-size="13" fill="#4b3b47" text-anchor="middle" letter-spacing="2">ORGANIC</text>
+  </g>
+  <text x="80" y="100" font-family="'Cormorant Garamond', serif" font-size="22" letter-spacing="6" fill="#4b3b47">02 / FLEURIEU BOTANICALS</text>
+  <text x="80" y="130" font-family="sans-serif" font-size="12" letter-spacing="3" fill="#6a6262">CONTENT CREATION &amp; EDITORIAL BRAND CAMPAIGN</text>
+</svg>

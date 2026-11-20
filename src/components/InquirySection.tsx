@@ -8,8 +8,6 @@ import {
   Send,
   Copy,
   Download,
-  ArrowRight,
-  ShieldCheck,
 } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/agencyData';
 
@@ -21,11 +19,13 @@ interface InquirySectionProps {
     painPoint: string;
     score: number;
   } | null;
+  isStandalonePage?: boolean;
 }
 
 export const InquirySection: React.FC<InquirySectionProps> = ({
   preselectedService,
   prefilledAuditData,
+  isStandalonePage = false,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -44,7 +44,6 @@ export const InquirySection: React.FC<InquirySectionProps> = ({
   const [copied, setCopied] = useState(false);
   const [inquiryId, setInquiryId] = useState('');
 
-  // Handle preselected service if passed from services section
   useEffect(() => {
     if (preselectedService && !formData.services.includes(preselectedService)) {
       setFormData((prev) => ({
@@ -54,7 +53,6 @@ export const InquirySection: React.FC<InquirySectionProps> = ({
     }
   }, [preselectedService]);
 
-  // Handle prefilled audit data if passed from audit teaser
   useEffect(() => {
     if (prefilledAuditData) {
       setFormData((prev) => ({
@@ -163,137 +161,148 @@ Studio: ${AGENCY_DETAILS.location}`;
   };
 
   return (
-    <section id="inquiry" className="py-24 bg-[#faf9f6] border-t border-[#4b3b47]/10">
+    <section
+      id="inquiry"
+      className={`${
+        isStandalonePage ? 'pt-32 pb-24 md:pt-40' : 'py-24 border-t border-[#181d2c]/10'
+      } bg-white`}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Adelaide Studio Context */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="text-xs uppercase tracking-[0.25em] text-[#6a6262] font-medium mb-3">
+              <div className="text-xs uppercase tracking-[0.25em] text-[#522D60] font-semibold mb-3">
                 Direct Dialogue · Intake Open
               </div>
-              <h2 className="font-serif text-3xl sm:text-5xl text-[#4b3b47] font-normal tracking-tight mb-6 leading-tight">
-                Initiate a conversation with our <span className="italic">principals</span>.
-              </h2>
-              <p className="text-sm sm:text-base text-[#6a6262] leading-relaxed mb-8">
+              {isStandalonePage ? (
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-[#181d2c] font-bold tracking-tight mb-6 leading-tight">
+                  Initiate a conversation with our <span className="text-[#522D60]">principals</span>.
+                </h1>
+              ) : (
+                <h2 className="font-display text-3xl sm:text-5xl text-[#181d2c] font-bold tracking-tight mb-6 leading-tight">
+                  Initiate a conversation with our <span className="text-[#522D60]">principals</span>.
+                </h2>
+              )}
+              <p className="text-sm sm:text-base text-[#3e4452] leading-relaxed mb-8">
                 Every project begins with an unhurried, transparent diagnostic discussion.
                 Tell us about your brand, your current commercial bottlenecks, and where you aspire to be.
               </p>
 
               {/* Contact Credentials */}
-              <div className="space-y-4 mb-8 text-xs text-[#4b3b47]">
-                <div className="flex items-start gap-3 p-3 bg-white border border-[#4b3b47]/10">
-                  <MapPin className="w-4 h-4 text-[#6a6262] shrink-0 mt-0.5" />
+              <div className="space-y-4 mb-8 text-xs text-[#181d2c]">
+                <div className="flex items-start gap-3 p-3.5 bg-[#f6f7fa] border border-[#181d2c]/12">
+                  <MapPin className="w-4 h-4 text-[#2b5c84] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold uppercase tracking-wider text-[11px]">
+                    <div className="font-bold uppercase tracking-wider text-[11px]">
                       Adelaide Studio Location
                     </div>
-                    <div className="text-[#6a6262] mt-0.5">{AGENCY_DETAILS.location}</div>
+                    <div className="text-[#3e4452] mt-0.5">{AGENCY_DETAILS.location}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-white border border-[#4b3b47]/10">
-                  <Mail className="w-4 h-4 text-[#6a6262] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3 p-3.5 bg-[#f6f7fa] border border-[#181d2c]/12">
+                  <Mail className="w-4 h-4 text-[#522D60] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold uppercase tracking-wider text-[11px]">
+                    <div className="font-bold uppercase tracking-wider text-[11px]">
                       Direct Dispatch
                     </div>
                     <a
                       href={`mailto:${AGENCY_DETAILS.email}`}
-                      className="text-[#4b3b47] hover:underline mt-0.5 block"
+                      className="text-[#522D60] font-medium hover:underline mt-0.5 block"
                     >
                       {AGENCY_DETAILS.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-white border border-[#4b3b47]/10">
-                  <Phone className="w-4 h-4 text-[#6a6262] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3 p-3.5 bg-[#f6f7fa] border border-[#181d2c]/12">
+                  <Phone className="w-4 h-4 text-[#2b5c84] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold uppercase tracking-wider text-[11px]">
+                    <div className="font-bold uppercase tracking-wider text-[11px]">
                       Telephone
                     </div>
                     <a
                       href={`tel:${AGENCY_DETAILS.phone.replace(/\s+/g, '')}`}
-                      className="text-[#4b3b47] hover:underline mt-0.5 block"
+                      className="text-[#181d2c] font-medium hover:underline mt-0.5 block"
                     >
                       {AGENCY_DETAILS.phone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-white border border-[#4b3b47]/10">
-                  <Clock className="w-4 h-4 text-[#6a6262] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3 p-3.5 bg-[#f6f7fa] border border-[#181d2c]/12">
+                  <Clock className="w-4 h-4 text-[#522D60] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold uppercase tracking-wider text-[11px]">
+                    <div className="font-bold uppercase tracking-wider text-[11px]">
                       Studio Hours
                     </div>
-                    <div className="text-[#6a6262] mt-0.5">{AGENCY_DETAILS.hours}</div>
+                    <div className="text-[#3e4452] mt-0.5">{AGENCY_DETAILS.hours}</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 bg-[#cfd2b2]/20 border border-[#4b3b47]/10 text-xs text-[#4b3b47] leading-relaxed">
-              <span className="font-semibold">Confidentiality Note:</span> All proprietary
+            <div className="p-4 bg-[#f6f2f8] border border-[#522D60]/20 text-xs text-[#181d2c] leading-relaxed">
+              <span className="font-bold">Confidentiality Note:</span> All proprietary
               commercial metrics, vintage release data, and architectural tenders shared with
               Aura Studio remain strictly protected under Australian professional non-disclosure standards.
             </div>
           </div>
 
           {/* Right Column: Inquiry Form or Confirmed State */}
-          <div className="lg:col-span-7 bg-white border border-[#4b3b47]/15 p-6 sm:p-10 shadow-xs">
+          <div className="lg:col-span-7 bg-white border border-[#181d2c]/15 p-6 sm:p-10 shadow-xs">
             {submitted ? (
               <div className="animate-in fade-in duration-300 py-6">
-                <div className="flex items-center gap-3 text-[#4b3b47] mb-4">
-                  <CheckCircle2 className="w-8 h-8 text-[#4b3b47]" />
+                <div className="flex items-center gap-3 text-[#181d2c] mb-4">
+                  <CheckCircle2 className="w-8 h-8 text-[#522D60]" />
                   <div>
-                    <div className="text-xs uppercase tracking-widest text-[#6a6262]">
+                    <div className="text-xs uppercase tracking-widest text-[#522D60] font-semibold">
                       Inquiry Received
                     </div>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#4b3b47]">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#181d2c]">
                       Thank you, {formData.name}.
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#6a6262] leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-[#3e4452] leading-relaxed mb-6">
                   Your project brief has been logged with reference{' '}
-                  <strong className="text-[#4b3b47] font-mono">{inquiryId}</strong>. Elena Vance,
-                  Principal Strategist, reviews all prospective partner briefs personally and will
+                  <strong className="text-[#522D60] font-mono">{inquiryId}</strong>. Our
+                  Principal Strategist reviews all prospective partner briefs personally and will
                   reach out via email within 24 business hours.
                 </p>
 
                 {/* Structured Brief Snapshot */}
-                <div className="p-5 bg-[#faf9f6] border border-[#4b3b47]/10 mb-8 space-y-3 text-xs">
-                  <div className="flex justify-between py-1 border-b border-[#4b3b47]/8">
-                    <span className="text-[#6a6262]">Brand:</span>
-                    <span className="font-medium text-[#4b3b47]">{formData.company}</span>
+                <div className="p-5 bg-[#f6f7fa] border border-[#181d2c]/10 mb-8 space-y-3 text-xs">
+                  <div className="flex justify-between py-1 border-b border-[#181d2c]/8">
+                    <span className="text-[#3e4452]">Brand:</span>
+                    <span className="font-semibold text-[#181d2c]">{formData.company}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-[#4b3b47]/8">
-                    <span className="text-[#6a6262]">Selected Disciplines:</span>
-                    <span className="font-medium text-[#4b3b47]">
+                  <div className="flex justify-between py-1 border-b border-[#181d2c]/8">
+                    <span className="text-[#3e4452]">Selected Disciplines:</span>
+                    <span className="font-semibold text-[#181d2c]">
                       {formData.services.join(', ')}
                     </span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-[#4b3b47]/8">
-                    <span className="text-[#6a6262]">Budget Range:</span>
-                    <span className="font-medium text-[#4b3b47]">{formData.budget}</span>
+                  <div className="flex justify-between py-1 border-b border-[#181d2c]/8">
+                    <span className="text-[#3e4452]">Budget Range:</span>
+                    <span className="font-semibold text-[#181d2c]">{formData.budget}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-[#4b3b47]/8">
-                    <span className="text-[#6a6262]">Target Timeline:</span>
-                    <span className="font-medium text-[#4b3b47]">{formData.timeline}</span>
+                  <div className="flex justify-between py-1 border-b border-[#181d2c]/8">
+                    <span className="text-[#3e4452]">Target Timeline:</span>
+                    <span className="font-semibold text-[#181d2c]">{formData.timeline}</span>
                   </div>
                   {formData.website && (
-                    <div className="flex justify-between py-1 border-b border-[#4b3b47]/8">
-                      <span className="text-[#6a6262]">Website:</span>
-                      <span className="font-medium text-[#4b3b47]">{formData.website}</span>
+                    <div className="flex justify-between py-1 border-b border-[#181d2c]/8">
+                      <span className="text-[#3e4452]">Website:</span>
+                      <span className="font-semibold text-[#181d2c]">{formData.website}</span>
                     </div>
                   )}
                   {formData.message && (
                     <div className="pt-2">
-                      <span className="text-[#6a6262] block mb-1">Brief Overview:</span>
-                      <p className="italic text-[#4b3b47]">{formData.message}</p>
+                      <span className="text-[#3e4452] block mb-1">Brief Overview:</span>
+                      <p className="text-[#181d2c]">{formData.message}</p>
                     </div>
                   )}
                 </div>
@@ -303,7 +312,7 @@ Studio: ${AGENCY_DETAILS.location}`;
                   <button
                     type="button"
                     onClick={handleCopySummary}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#4b3b47] text-[#faf9f6] text-xs uppercase tracking-wider font-medium rounded-sm hover:bg-[#382b35] transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#522D60] text-white text-xs uppercase tracking-wider font-semibold rounded-sm hover:bg-[#3e2049] transition-colors"
                   >
                     <Copy className="w-3.5 h-3.5" />
                     <span>{copied ? 'Copied to Clipboard' : 'Copy Brief Summary'}</span>
@@ -312,7 +321,7 @@ Studio: ${AGENCY_DETAILS.location}`;
                   <button
                     type="button"
                     onClick={handleDownloadSummary}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#4b3b47]/30 text-[#4b3b47] text-xs uppercase tracking-wider font-medium rounded-sm hover:bg-[#e0d8de]/30 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#181d2c]/25 text-[#181d2c] text-xs uppercase tracking-wider font-semibold rounded-sm hover:border-[#522D60] hover:text-[#522D60] transition-colors"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download TXT Record</span>
@@ -334,7 +343,7 @@ Studio: ${AGENCY_DETAILS.location}`;
                         message: '',
                       });
                     }}
-                    className="text-xs text-[#6a6262] hover:text-[#4b3b47] underline ml-auto py-2"
+                    className="text-xs text-[#3e4452] hover:text-[#522D60] underline ml-auto py-2"
                   >
                     Submit Another Inquiry
                   </button>
@@ -343,10 +352,10 @@ Studio: ${AGENCY_DETAILS.location}`;
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="font-serif text-2xl text-[#4b3b47] font-medium mb-1">
+                  <h3 className="font-display text-2xl text-[#181d2c] font-bold mb-1">
                     Partner Inquiry Brief
                   </h3>
-                  <p className="text-xs text-[#6a6262]">
+                  <p className="text-xs text-[#3e4452]">
                     Fields marked with an asterisk (*) are required.
                   </p>
                 </div>
@@ -354,7 +363,7 @@ Studio: ${AGENCY_DETAILS.location}`;
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Your Name *
                     </label>
                     <input
@@ -362,15 +371,17 @@ Studio: ${AGENCY_DETAILS.location}`;
                       placeholder="e.g. Thomas Avery"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`w-full px-4 py-2.5 bg-[#faf9f6] border text-xs text-[#4b3b47] focus:outline-hidden transition-colors ${
-                        errors.name ? 'border-red-500' : 'border-[#4b3b47]/20 focus:border-[#4b3b47]'
+                      className={`w-full px-4 py-2.5 bg-[#f6f7fa] border text-xs text-[#181d2c] focus:outline-hidden transition-colors ${
+                        errors.name
+                          ? 'border-[#2b5c84]'
+                          : 'border-[#181d2c]/20 focus:border-[#522D60]'
                       }`}
                     />
-                    {errors.name && <p className="text-[11px] text-red-600 mt-1">{errors.name}</p>}
+                    {errors.name && <p className="text-[11px] text-[#1e4363] mt-1">{errors.name}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Work Email *
                     </label>
                     <input
@@ -378,12 +389,14 @@ Studio: ${AGENCY_DETAILS.location}`;
                       placeholder="t.avery@winery.com.au"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full px-4 py-2.5 bg-[#faf9f6] border text-xs text-[#4b3b47] focus:outline-hidden transition-colors ${
-                        errors.email ? 'border-red-500' : 'border-[#4b3b47]/20 focus:border-[#4b3b47]'
+                      className={`w-full px-4 py-2.5 bg-[#f6f7fa] border text-xs text-[#181d2c] focus:outline-hidden transition-colors ${
+                        errors.email
+                          ? 'border-[#2b5c84]'
+                          : 'border-[#181d2c]/20 focus:border-[#522D60]'
                       }`}
                     />
                     {errors.email && (
-                      <p className="text-[11px] text-red-600 mt-1">{errors.email}</p>
+                      <p className="text-[11px] text-[#1e4363] mt-1">{errors.email}</p>
                     )}
                   </div>
                 </div>
@@ -391,7 +404,7 @@ Studio: ${AGENCY_DETAILS.location}`;
                 {/* Company & Phone Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Brand / Organization *
                     </label>
                     <input
@@ -399,19 +412,19 @@ Studio: ${AGENCY_DETAILS.location}`;
                       placeholder="e.g. Barossa Reserve Vintners"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className={`w-full px-4 py-2.5 bg-[#faf9f6] border text-xs text-[#4b3b47] focus:outline-hidden transition-colors ${
+                      className={`w-full px-4 py-2.5 bg-[#f6f7fa] border text-xs text-[#181d2c] focus:outline-hidden transition-colors ${
                         errors.company
-                          ? 'border-red-500'
-                          : 'border-[#4b3b47]/20 focus:border-[#4b3b47]'
+                          ? 'border-[#2b5c84]'
+                          : 'border-[#181d2c]/20 focus:border-[#522D60]'
                       }`}
                     />
                     {errors.company && (
-                      <p className="text-[11px] text-red-600 mt-1">{errors.company}</p>
+                      <p className="text-[11px] text-[#1e4363] mt-1">{errors.company}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Phone Number (Optional)
                     </label>
                     <input
@@ -419,14 +432,14 @@ Studio: ${AGENCY_DETAILS.location}`;
                       placeholder="+61 400 000 000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                      className="w-full px-4 py-2.5 bg-[#f6f7fa] border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                     />
                   </div>
                 </div>
 
                 {/* Website URL */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                  <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                     Current Website URL
                   </label>
                   <input
@@ -434,13 +447,13 @@ Studio: ${AGENCY_DETAILS.location}`;
                     placeholder="https://www.yourbrand.com.au"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                    className="w-full px-4 py-2.5 bg-[#f6f7fa] border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                   />
                 </div>
 
                 {/* Services Checkboxes */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-2">
                     Disciplines Required *
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -453,16 +466,16 @@ Studio: ${AGENCY_DETAILS.location}`;
                           onClick={() => handleServiceToggle(srv)}
                           className={`p-3 text-left border flex items-center justify-between text-xs transition-all ${
                             isChecked
-                              ? 'bg-[#4b3b47] text-[#faf9f6] border-[#4b3b47]'
-                              : 'bg-[#faf9f6] text-[#4b3b47] border-[#4b3b47]/15 hover:border-[#4b3b47]/30'
+                              ? 'bg-[#522D60] text-white border-[#522D60]'
+                              : 'bg-[#f6f7fa] text-[#181d2c] border-[#181d2c]/15 hover:border-[#2b5c84]'
                           }`}
                         >
-                          <span className="font-medium">{srv}</span>
+                          <span className="font-semibold">{srv}</span>
                           <span
-                            className={`w-4 h-4 rounded-xs border flex items-center justify-center text-[10px] ${
+                            className={`w-4 h-4 rounded-xs border flex items-center justify-center text-[10px] font-bold ${
                               isChecked
-                                ? 'bg-[#cfd2b2] text-[#4b3b47] border-[#cfd2b2]'
-                                : 'border-[#4b3b47]/30 bg-white'
+                                ? 'bg-[#2b5c84] text-white border-[#2b5c84]'
+                                : 'border-[#181d2c]/30 bg-white'
                             }`}
                           >
                             {isChecked && '✓'}
@@ -472,20 +485,20 @@ Studio: ${AGENCY_DETAILS.location}`;
                     })}
                   </div>
                   {errors.services && (
-                    <p className="text-[11px] text-red-600 mt-1.5">{errors.services}</p>
+                    <p className="text-[11px] text-[#1e4363] mt-1.5">{errors.services}</p>
                   )}
                 </div>
 
                 {/* Budget & Timeline */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Estimated Investment
                     </label>
                     <select
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                      className="w-full px-4 py-2.5 bg-[#f6f7fa] border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                     >
                       {budgetTiers.map((b) => (
                         <option key={b} value={b}>
@@ -496,13 +509,13 @@ Studio: ${AGENCY_DETAILS.location}`;
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                       Target Launch Window
                     </label>
                     <select
                       value={formData.timeline}
                       onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                      className="w-full px-4 py-2.5 bg-[#f6f7fa] border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                     >
                       {timelines.map((t) => (
                         <option key={t} value={t}>
@@ -515,7 +528,7 @@ Studio: ${AGENCY_DETAILS.location}`;
 
                 {/* Message Brief */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-1.5">
+                  <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-1.5">
                     Project Context or Ambitions
                   </label>
                   <textarea
@@ -523,16 +536,16 @@ Studio: ${AGENCY_DETAILS.location}`;
                     placeholder="Outline your current challenges, key milestones, or specific audit goals..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors resize-y"
+                    className="w-full px-4 py-2.5 bg-[#f6f7fa] border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors resize-y"
                   />
                 </div>
 
                 {/* Submit Action */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-[#4b3b47] text-[#faf9f6] text-xs uppercase tracking-widest font-medium rounded-sm hover:bg-[#382b35] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                  className="w-full py-3.5 bg-[#2b5c84] text-white text-xs uppercase tracking-widest font-semibold rounded-sm hover:bg-[#1e4363] transition-colors flex items-center justify-center gap-2 shadow-xs"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#cfd2b2]" />
+                  <Send className="w-3.5 h-3.5 text-white" />
                   <span>Transmit Inquiry to Studio</span>
                 </button>
               </form>

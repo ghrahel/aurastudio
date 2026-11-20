@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import {
   Gauge,
-  Search,
   Zap,
   CheckCircle,
   AlertCircle,
   ArrowRight,
-  ShieldCheck,
   RefreshCw,
 } from 'lucide-react';
 
@@ -56,7 +54,6 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
 
     setIsAnalyzing(true);
 
-    // Heuristic simulation based on inputs to generate meaningful initial findings
     setTimeout(() => {
       let speed = 64;
       let seo = 58;
@@ -116,24 +113,25 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
         painPoint,
         score: auditResult.overallScore,
       });
-    }
-    const inquiryEl = document.getElementById('inquiry');
-    if (inquiryEl) {
-      inquiryEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const inquiryEl = document.getElementById('inquiry');
+      if (inquiryEl) {
+        inquiryEl.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   return (
-    <section id="audit-tool" className="py-24 bg-[#faf9f6] border-t border-[#4b3b47]/10">
+    <section id="audit-tool" className="py-24 bg-white border-t border-[#181d2c]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="max-w-3xl mb-12">
-          <div className="text-xs uppercase tracking-[0.25em] text-[#6a6262] font-medium mb-3">
+          <div className="text-xs uppercase tracking-[0.25em] text-[#522D60] font-semibold mb-3">
             Self-Service Heuristic Diagnostic
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl text-[#4b3b47] font-normal tracking-tight mb-4">
-            Test your digital foundation in <span className="italic">60 seconds</span>.
+          <h2 className="font-display text-3xl sm:text-5xl text-[#181d2c] font-bold tracking-tight mb-4">
+            Test your digital foundation in <span className="text-[#522D60]">60 seconds</span>.
           </h2>
-          <p className="text-sm sm:text-base text-[#6a6262] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#3e4452] leading-relaxed">
             Run an instant preliminary heuristic check across speed, search accessibility, and
             conversion hygiene before requesting our full manual forensic audit.
           </p>
@@ -141,34 +139,34 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Form Input Card */}
-          <div className="lg:col-span-5 bg-white border border-[#4b3b47]/15 p-6 sm:p-8">
-            <h3 className="font-serif text-xl text-[#4b3b47] font-medium mb-5">
+          <div className="lg:col-span-5 bg-[#f6f7fa] border border-[#181d2c]/15 p-6 sm:p-8">
+            <h3 className="font-display text-xl text-[#181d2c] font-bold mb-5">
               Website Parameters
             </h3>
 
             <form onSubmit={handleRunAudit} className="space-y-5">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-2">
                   Website URL
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. boutiquebrand.com.au"
+                  placeholder="e.g. brandname.com.au"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   required
-                  className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                  className="w-full px-4 py-2.5 bg-white border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-2">
                   Brand Sector
                 </label>
                 <select
                   value={industry}
                   onChange={(e) => setIndustry(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                  className="w-full px-4 py-2.5 bg-white border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                 >
                   {industries.map((ind) => (
                     <option key={ind} value={ind}>
@@ -179,13 +177,13 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#4b3b47] font-semibold mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#181d2c] font-semibold mb-2">
                   Primary Strategic Friction
                 </label>
                 <select
                   value={painPoint}
                   onChange={(e) => setPainPoint(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-[#faf9f6] border border-[#4b3b47]/20 text-xs text-[#4b3b47] focus:outline-hidden focus:border-[#4b3b47] transition-colors"
+                  className="w-full px-4 py-2.5 bg-white border border-[#181d2c]/20 text-xs text-[#181d2c] focus:outline-hidden focus:border-[#522D60] transition-colors"
                 >
                   {painPoints.map((pp) => (
                     <option key={pp} value={pp}>
@@ -198,16 +196,16 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
               <button
                 type="submit"
                 disabled={isAnalyzing}
-                className="w-full py-3 bg-[#4b3b47] text-[#faf9f6] text-xs uppercase tracking-widest font-medium rounded-sm hover:bg-[#382b35] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-[#522D60] text-white text-xs uppercase tracking-widest font-semibold rounded-sm hover:bg-[#3e2049] transition-colors flex items-center justify-center gap-2"
               >
                 {isAnalyzing ? (
                   <>
-                    <RefreshCw className="w-4 h-4 animate-spin text-[#cfd2b2]" />
+                    <RefreshCw className="w-4 h-4 animate-spin text-[#eab340]" />
                     <span>Analyzing Digital Surface...</span>
                   </>
                 ) : (
                   <>
-                    <Zap className="w-4 h-4 text-[#cfd2b2]" />
+                    <Zap className="w-4 h-4 text-[#eab340]" />
                     <span>Run Heuristic Check</span>
                   </>
                 )}
@@ -216,49 +214,49 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
           </div>
 
           {/* Results Output */}
-          <div className="lg:col-span-7 bg-white border border-[#4b3b47]/15 p-6 sm:p-8 min-h-[380px] flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-[#f6f7fa] border border-[#181d2c]/15 p-6 sm:p-8 min-h-[380px] flex flex-col justify-between">
             {auditResult ? (
               <div className="animate-in fade-in duration-300">
-                <div className="flex items-center justify-between pb-4 border-b border-[#4b3b47]/10 mb-6">
+                <div className="flex items-center justify-between pb-4 border-b border-[#181d2c]/10 mb-6">
                   <div>
-                    <div className="text-xs uppercase tracking-wider text-[#6a6262]">
+                    <div className="text-xs uppercase tracking-wider text-[#3e4452]">
                       Diagnostic For
                     </div>
-                    <div className="font-serif text-lg font-medium text-[#4b3b47]">
+                    <div className="font-display text-lg font-bold text-[#181d2c]">
                       {url} · {industry}
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="font-serif text-3xl font-semibold text-[#4b3b47]">
+                    <span className="font-display text-3xl font-bold text-[#522D60]">
                       {auditResult.overallScore}
                     </span>
-                    <span className="text-xs text-[#6a6262]">/100 Index</span>
+                    <span className="text-xs text-[#3e4452]">/100 Index</span>
                   </div>
                 </div>
 
                 {/* Scores breakdown */}
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="p-3 bg-[#faf9f6] border border-[#4b3b47]/8 text-center">
-                    <div className="text-[10px] uppercase tracking-wider text-[#6a6262]">
+                  <div className="p-3 bg-white border border-[#181d2c]/10 text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-[#3e4452] font-semibold">
                       Speed Score
                     </div>
-                    <div className="font-serif text-xl font-medium text-[#4b3b47] mt-1">
+                    <div className="font-display text-xl font-bold text-[#181d2c] mt-1">
                       {auditResult.speedScore}%
                     </div>
                   </div>
-                  <div className="p-3 bg-[#faf9f6] border border-[#4b3b47]/8 text-center">
-                    <div className="text-[10px] uppercase tracking-wider text-[#6a6262]">
+                  <div className="p-3 bg-white border border-[#181d2c]/10 text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-[#3e4452] font-semibold">
                       SEO Graph
                     </div>
-                    <div className="font-serif text-xl font-medium text-[#4b3b47] mt-1">
+                    <div className="font-display text-xl font-bold text-[#522D60] mt-1">
                       {auditResult.seoScore}%
                     </div>
                   </div>
-                  <div className="p-3 bg-[#faf9f6] border border-[#4b3b47]/8 text-center">
-                    <div className="text-[10px] uppercase tracking-wider text-[#6a6262]">
+                  <div className="p-3 bg-white border border-[#181d2c]/10 text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-[#3e4452] font-semibold">
                       Mobile UX
                     </div>
-                    <div className="font-serif text-xl font-medium text-[#4b3b47] mt-1">
+                    <div className="font-display text-xl font-bold text-[#2b5c84] mt-1">
                       {auditResult.uxScore}%
                     </div>
                   </div>
@@ -266,18 +264,18 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
 
                 {/* Flags identified */}
                 <div className="mb-6 space-y-3">
-                  <div className="text-xs uppercase tracking-wider font-semibold text-[#4b3b47]">
+                  <div className="text-xs uppercase tracking-wider font-bold text-[#181d2c]">
                     Observed Vulnerabilities
                   </div>
                   {auditResult.flags.map((flag, idx) => (
                     <div
                       key={idx}
-                      className="p-3 bg-[#faf9f6] border border-[#4b3b47]/10 flex items-start gap-3 text-xs"
+                      className="p-3 bg-white border border-[#181d2c]/10 flex items-start gap-3 text-xs"
                     >
-                      <AlertCircle className="w-4 h-4 text-[#6a6262] shrink-0 mt-0.5" />
+                      <AlertCircle className="w-4 h-4 text-[#2b5c84] shrink-0 mt-0.5" />
                       <div>
-                        <div className="font-medium text-[#4b3b47]">{flag.title}</div>
-                        <div className="text-[#6a6262] mt-0.5">{flag.desc}</div>
+                        <div className="font-semibold text-[#181d2c]">{flag.title}</div>
+                        <div className="text-[#3e4452] mt-0.5">{flag.desc}</div>
                       </div>
                     </div>
                   ))}
@@ -285,13 +283,13 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
 
                 {/* Actionable recommendations */}
                 <div className="mb-6">
-                  <div className="text-xs uppercase tracking-wider font-semibold text-[#4b3b47] mb-2">
+                  <div className="text-xs uppercase tracking-wider font-bold text-[#181d2c] mb-2">
                     Aura Studio Recommended Fixes
                   </div>
-                  <ul className="space-y-1.5 text-xs text-[#4b3b47]">
+                  <ul className="space-y-1.5 text-xs text-[#181d2c]">
                     {auditResult.recommendations.map((rec, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-[#9c9990] shrink-0" />
+                        <CheckCircle className="w-3.5 h-3.5 text-[#522D60] shrink-0" />
                         <span>{rec}</span>
                       </li>
                     ))}
@@ -299,27 +297,27 @@ export const AuditTeaserTool: React.FC<AuditTeaserToolProps> = ({ onForwardToInq
                 </div>
 
                 {/* Forward to studio button */}
-                <div className="pt-4 border-t border-[#4b3b47]/10 flex flex-wrap items-center justify-between gap-4">
-                  <p className="text-xs text-[#6a6262]">
+                <div className="pt-4 border-t border-[#181d2c]/10 flex flex-wrap items-center justify-between gap-4">
+                  <p className="text-xs text-[#3e4452]">
                     Need our team to execute the full 50-point forensic audit?
                   </p>
                   <button
                     type="button"
                     onClick={handleForward}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4b3b47] text-[#faf9f6] text-xs uppercase tracking-widest font-medium rounded-sm hover:bg-[#382b35] transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2b5c84] text-white text-xs uppercase tracking-widest font-semibold rounded-sm hover:bg-[#1e4363] transition-colors"
                   >
                     <span>Send to Studio for Manual Review</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 text-white" />
                   </button>
                 </div>
               </div>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-[#9c9990]">
-                <Gauge className="w-12 h-12 stroke-1 mb-4 text-[#6a6262]" />
-                <h4 className="font-serif text-xl text-[#4b3b47] font-normal mb-2">
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-[#626878]">
+                <Gauge className="w-12 h-12 stroke-1.5 mb-4 text-[#522D60]" />
+                <h4 className="font-display text-xl text-[#181d2c] font-bold mb-2">
                   Awaiting Website Parameters
                 </h4>
-                <p className="text-xs text-[#6a6262] max-w-sm">
+                <p className="text-xs text-[#3e4452] max-w-sm">
                   Enter your website URL on the left to review preliminary Core Web Vitals,
                   Adelaide local search presence, and mobile UX friction points.
                 </p>

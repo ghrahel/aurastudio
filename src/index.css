@@ -2,85 +2,56 @@
 
 @layer base {
   :root {
-    /* Required Palette */
-    --mauve-shadow: #4b3b47;
-    --dim-grey: #6a6262;
-    --grey-olive: #9c9990;
-    --sand-dune: #cfd2b2;
-    --lavender-blush: #e0d8de;
-
-    /* Palette RGBA values */
-    --mauve-shadow-rgb: 75, 59, 71;
-    --dim-grey-rgb: 106, 98, 98;
-    --grey-olive-rgb: 156, 153, 144;
-    --sand-dune-rgb: 207, 210, 178;
-    --lavender-blush-rgb: 224, 216, 222;
-
-    /* Semantic Tint & Shade Variants for rich UI depth */
-    --mauve-deep: #2a2027;
-    --mauve-light: #5f4b5a;
-    --sand-light: #f5f6ed;
-    --sand-tint: #eaece0;
-    --lavender-tint: #f3eff2;
-    --cream-bg: #faf9f6;
+    /* Pure White Canvas + Deep Midnight Slate, Coastal Blue (#2b5c84) & Plum Purple (#522D60) Palette */
+    --canvas-bg: #ffffff;
     --surface-paper: #ffffff;
-    --hairline: rgba(75, 59, 71, 0.12);
+    --surface-soft: #f6f7fa;
+    --lavender-mist: #f6f2f8;
+    --slate-mist: #eff3f8;
 
-    /* Gradients as defined in prompt */
-    --gradient-top: linear-gradient(0deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-right: linear-gradient(90deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-bottom: linear-gradient(180deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-left: linear-gradient(270deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-top-right: linear-gradient(45deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-bottom-right: linear-gradient(135deg, #4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
-    --gradient-radial: radial-gradient(#4b3b47, #6a6262, #9c9990, #cfd2b2, #e0d8de);
+    --midnight-ink: #181d2c;
+    --coastal-blue: #2b5c84;
+    --coastal-hover: #1e4363;
+    --plum-purple: #522D60;
+    --plum-purple-hover: #3e2049;
+    --lilac-purple: #d2b8e2;
+    --wattle-gold: #eab340;
+    --slate-body: #3e4452;
+    --slate-muted: #626878;
+    --hairline: rgba(24, 29, 44, 0.12);
+
+    /* Natural Gradients */
+    --gradient-natural: linear-gradient(135deg, #181d2c, #522D60, #2b5c84);
+    --gradient-soft: linear-gradient(135deg, #f6f2f8, #ebf1f7, #ffffff);
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: var(--mauve-shadow);
-    background-color: var(--cream-bg);
+    color: var(--midnight-ink);
+    background-color: #ffffff;
+  }
+
+  body {
+    background-color: #ffffff;
   }
 
   ::selection {
-    background-color: var(--sand-dune);
-    color: var(--mauve-shadow);
+    background-color: var(--coastal-blue);
+    color: #ffffff;
   }
 }
 
-.font-serif {
-  font-family: 'Cormorant Garamond', Garamond, Georgia, serif;
+.font-display {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 .font-sans {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
-
-/* Custom background & border helpers using project palette */
-.bg-mauve-shadow { background-color: var(--mauve-shadow); }
-.bg-dim-grey { background-color: var(--dim-grey); }
-.bg-grey-olive { background-color: var(--grey-olive); }
-.bg-sand-dune { background-color: var(--sand-dune); }
-.bg-lavender-blush { background-color: var(--lavender-blush); }
-.bg-cream { background-color: var(--cream-bg); }
-.bg-sand-light { background-color: var(--sand-light); }
-.bg-lavender-tint { background-color: var(--lavender-tint); }
-
-.text-mauve-shadow { color: var(--mauve-shadow); }
-.text-dim-grey { color: var(--dim-grey); }
-.text-grey-olive { color: var(--grey-olive); }
-.text-sand-dune { color: var(--sand-dune); }
-.text-lavender-blush { color: var(--lavender-blush); }
-
-.border-mauve-shadow { border-color: var(--mauve-shadow); }
-.border-grey-olive { border-color: var(--grey-olive); }
-.border-sand-dune { border-color: var(--sand-dune); }
-.border-lavender-blush { border-color: var(--lavender-blush); }
-.border-hairline { border-color: var(--hairline); }
 
 /* Atmospheric textures */
 .noise-overlay {
-  background-image: radial-gradient(rgba(75, 59, 71, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(43, 92, 132, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }

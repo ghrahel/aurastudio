@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PortfolioSection } from './components/PortfolioSection';
@@ -8,8 +8,14 @@ import { AboutSection } from './components/AboutSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { InquirySection } from './components/InquirySection';
 import { Footer } from './components/Footer';
+import { HomeServicesOverview, HomeContactBand } from './components/HomeBands';
+import { PageRoute, ROUTE_HASHES, parseRouteFromHash } from './types/navigation';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<PageRoute>(() =>
+    parseRouteFromHash(window.location.hash)
+  );
+  const [activeServiceId, setActiveServiceId] = useState<string>('website-audits');
   const [selectedService, setSelectedService] = useState<string>('');
   const [auditDataForInquiry, setAuditDataForInquiry] = useState<{
     url: string;
@@ -18,8 +24,32 @@ export default function App() {
     score: number;
   } | null>(null);
 
-  const handleSelectService = (serviceName: string) => {
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentPage(parseRouteFromHash(window.location.hash));
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleNavigate = useCallback((page: PageRoute, serviceId?: string) => {
+    if (serviceId) {
+      setActiveServiceId(serviceId);
+    }
+    const targetHash = ROUTE_HASHES[page];
+    if (window.location.hash !== targetHash) {
+      window.location.hash = targetHash;
+    } else {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, []);
+
+  const handleSelectServiceForInquiry = (serviceName: string) => {
     setSelectedService(serviceName);
+    handleNavigate('contact');
   };
 
   const handleForwardAudit = (data: {
@@ -29,41 +59,59 @@ export default function App() {
     score: number;
   }) => {
     setAuditDataForInquiry(data);
+    handleNavigate('contact');
   };
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] text-[#4b3b47] selection:bg-[#cfd2b2] selection:text-[#4b3b47] flex flex-col font-sans">
+    <div className="min-h-screen bg-white text-[#181d2c] selection:bg-[#2b5c84] selection:text-white flex flex-col font-sans">
       {/* Top Navigation */}
-      <Navbar onSelectService={handleSelectService} />
+      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <Hero />
+        {currentPage === 'home' && (
+          <>
+            <Hero onNavigate={handleNavigate} />
+            <HomeServicesOverview onNavigate={handleNavigate} />
+            <PortfolioSection onNavigate={handleNavigate} featuredLimit={3} />
+            <TestimonialsSection />
+            <HomeContactBand onNavigate={handleNavigate} />
+          </>
+        )}
 
-        {/* Portfolio of Past Client Projects (Gallery) */}
-        <PortfolioSection />
+        {currentPage === 'about' && (
+          <AboutSection isStandalonePage onNavigate={handleNavigate} />
+        )}
 
-        {/* Services Listing (Website Audits, Content Creation, Digital Strategy, SEO) */}
-        <ServicesSection onSelectService={handleSelectService} />
+        {currentPage === 'services' && (
+          <>
+            <ServicesSection
+              isStandalonePage
+              initialServiceId={activeServiceId}
+              onSelectService={handleSelectServiceForInquiry}
+            />
+            <AuditTeaserTool onForwardToInquiry={handleForwardAudit} />
+          </>
+        )}
 
-        {/* Interactive Instant Website Audit Tool */}
-        <AuditTeaserTool onForwardToInquiry={handleForwardAudit} />
+        {currentPage === 'work' && (
+          <>
+            <PortfolioSection isStandalonePage onNavigate={handleNavigate} />
+            <TestimonialsSection />
+            <HomeContactBand onNavigate={handleNavigate} />
+          </>
+        )}
 
-        {/* About Us (Adelaide East End Roots & Principles) */}
-        <AboutSection />
-
-        {/* Client Testimonials Section */}
-        <TestimonialsSection />
-
-        {/* Integrated Inquiry Form */}
-        <InquirySection
-          preselectedService={selectedService}
-          prefilledAuditData={auditDataForInquiry}
-        />
+        {currentPage === 'contact' && (
+          <InquirySection
+            isStandalonePage
+            preselectedService={selectedService}
+            prefilledAuditData={auditDataForInquiry}
+          />
+        )}
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }

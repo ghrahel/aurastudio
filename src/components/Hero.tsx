@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-white">
+    <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden bg-white">
       {/* Subtle organic botanical glow on pure white */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#522D60]/15 to-transparent" />

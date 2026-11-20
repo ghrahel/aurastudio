@@ -52,7 +52,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     <section
       id="work"
       className={`${
-        isStandalonePage ? 'pt-32 pb-24 md:pt-40' : 'py-24 border-t border-[#181d2c]/10'
+        isStandalonePage ? 'pt-32 pb-24 md:pt-48' : 'py-24 border-t border-[#181d2c]/10'
       } bg-white`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">

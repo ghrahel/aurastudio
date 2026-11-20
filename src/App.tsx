@@ -7,6 +7,7 @@ import { AuditTeaserTool } from './components/AuditTeaserTool';
 import { AboutSection } from './components/AboutSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { InquirySection } from './components/InquirySection';
+import { BlogSection } from './components/BlogSection';
 import { Footer } from './components/Footer';
 import { HomeServicesOverview, HomeContactBand } from './components/HomeBands';
 import { PageRoute, ROUTE_HASHES, parseRouteFromHash } from './types/navigation';
@@ -33,6 +34,32 @@ export default function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  useEffect(() => {
+    const defaultTitle = 'Aura Studio | Adelaide Boutique Digital Marketing';
+    const defaultDescription =
+      'Minimalist boutique digital marketing consultancy in Adelaide specializing in website audits, content creation, digital strategy, and search engine optimization for cultured brands.';
+
+    const title =
+      currentPage === 'blog'
+        ? 'Why Creative Strategy Drives Growth | Aura Studio'
+        : defaultTitle;
+    const description =
+      currentPage === 'blog'
+        ? 'Discover the true digital marketing benefits of pairing data with bold storytelling. Learn how Aura Studio’s innovative video creative and strategy help growth-obsessed brands stand out.'
+        : defaultDescription;
+
+    document.title = title;
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', description);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+  }, [currentPage]);
 
   const handleNavigate = useCallback((page: PageRoute, serviceId?: string) => {
     if (serviceId) {
@@ -100,6 +127,8 @@ export default function App() {
             <HomeContactBand onNavigate={handleNavigate} />
           </>
         )}
+
+        {currentPage === 'blog' && <BlogSection onNavigate={handleNavigate} />}
 
         {currentPage === 'contact' && (
           <InquirySection

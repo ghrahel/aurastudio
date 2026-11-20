@@ -121,6 +121,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
+                  href={ROUTE_HASHES.blog}
+                  onClick={(e) => handleNav(e, 'blog')}
+                  className="hover:text-[#8eb8db] transition-colors"
+                >
+                  Blog &amp; Creative Strategy Journal
+                </a>
+              </li>
+              <li>
+                <a
                   href={ROUTE_HASHES.contact}
                   onClick={(e) => handleNav(e, 'contact')}
                   className="hover:text-[#8eb8db] transition-colors"
